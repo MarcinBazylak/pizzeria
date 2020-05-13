@@ -1,6 +1,9 @@
 <?php
 
-include 'includes/autoload.php';
+error_reporting(0);
+
+require_once 'includes/db.php';
+require_once 'includes/autoload.php';
 
 ?>
 
@@ -18,22 +21,14 @@ include 'includes/autoload.php';
 
    <div class="container">
 
-      <header>         
+      <header>
 
-      </header>
-
-      <aside>
-         <div class="pizza-front">
-            <img src="img/pizza.png" style="width: 60vh">
+         <div class="top">
+         
          </div>
-      </aside>
-
-      <main>      
-         <div class="mainContent">
-         <h1><span style="font-size:8vh">FRANCESCO</span><br>NAJLEPSZA PIZZA W MIEŚCIE</h1>
-            <h3>
-               Prawdziwa PIZZA przygotowywana w tradycyjny sposób przez prawdziwego WŁOSKIEGO kucharza.
-            </h2>
+      
+         <div class="navbar">        
+         
             <nav>
                <ul>
                   <li>
@@ -47,7 +42,21 @@ include 'includes/autoload.php';
                   </li>
                </ul>
             </nav>
+
          </div>
+      
+      </header>
+
+      <aside>
+
+         <?php include 'views/home-left.php'; ?>
+
+      </aside>
+
+      <main>
+
+         <?php include 'views/home-right.php'; ?>
+
       </main>
 
    </div>
