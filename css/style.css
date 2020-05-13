@@ -1,11 +1,23 @@
+/* VARIABLES */
+
+:root {
+   --primary-accent: #562c12;
+   --primary-link: #ffdba4;
+}
+
+/* STYLES */
+
 body, html {
    min-height: 100%;
    padding: 0;
    margin: 0;
-   background: linear-gradient(to bottom right, #0d1115 , #252c32, #0d1115 75%) no-repeat fixed;
-   color: deepskyblue;
+   background: linear-gradient(to bottom right, #5f2206 , #954c1f, #5f2206 75%) no-repeat fixed;
+   background: url('../img/background.jpg') center no-repeat fixed;
+   background-size: cover;
+   color: white;
    font-family: Verdana, Geneva, Tahoma, sans-serif;
-   font-size: 2vh;
+   font-size: 1.7vh;
+   line-height: 1.8;
 }
 
 a {
@@ -17,82 +29,95 @@ a {
    position: relative;
    display: grid;
    grid-gap: 1%;
-   min-height:  100vh;
-   grid-template-columns: repeat(4, 1fr);
-   grid-template-rows: 40vh max-content 8vh;
+   min-height:  88vh;
+   grid-template-columns: repeat(8, 1fr);
+   grid-template-rows: 25vh max-content;
    grid-template-areas:
-   "header header header header"
-   "aside main main main"
-   "footer footer footer footer"
+   "header header header header header header header header"
+   ". aside aside aside main main main ."
    ;
 }
 
 header {
    grid-area: header;
-   height: 40vh;
-   background: url('../img/top_pizza.jpg') center no-repeat;
-   background-size: cover;
+   height: 25vh;
+   background: url("../img/top.png") center;
+   background-size: contain;
    overflow: hidden;
    position: relative;
 }
 
-h2 {
+h1 {
    color: white;
-}
-
-header h1 {
-   color: white;
-   text-align: end;
    margin-right: 10%;
    line-height: 1.5;
    text-shadow: 4px 4px black;
-   font-size: 4vh;
+   font-size: 3.9vh;
+}
+
+h3 {
+   color: white;
+   line-height: 1.8;
 }
 
 nav {
-   width: 100%;
-   padding: 0;
-   position: absolute;
-   bottom: 0;
+   margin-top: 2vh;
 }
 
 nav ul {
    list-style: none;
-   margin: 0;
+   margin: 0 auto;
    padding-inline-start: 0;
 }
 
-nav ul li {
+nav ul li{
    display: inline-block;
-   background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(120, 120, 120, 0.5));
-   padding: 0.2% 1.5%;
-   margin: 0;
+   width: 10vh;
+   text-align: center;
+   padding: 1.6% 3%;
+   margin-right: 4vh;
+   margin-top: 2vh;
    text-shadow: 1px 1px black;
-   border-radius: 3px;
+   border-radius: 6px;
+   border: solid 3px #85a429;
+   font-weight: 600;
+}
+
+nav ul li a {
+   color: #ffb309;
+   text-decoration: none;
 }
 
 nav ul li:hover {
-   background-image: linear-gradient(rgb(255, 255, 255), rgb(120, 120, 120));
-}
-
-nav ul li a{
-color: deepskyblue;
-text-decoration: none;
+   background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
 }
 
 aside {
-   background-color: rgba(255, 255, 255, 0.1);
+   background-color: rgba(255, 255, 255, 0);
    margin-left: 2vh;
    grid-area: aside;
-   margin-top: 2vh;
-   border-right: 1px solid deepskyblue;
+   margin-top: 1vh;
+   border-right: 1px solid var(--primary-accent);
    border-radius: 15px;
+   padding-right: 3vh;
+}
+
+.pizza-front {
+   display: flex;
+   justify-content: flex-end;   
+   align-content: center;
 }
 
 main {
    margin-right: 2vh;
    grid-area: main;
-   margin-top: 2vh;
+   margin-top: 3vh;
+   padding-left: 3vh;
+}
+
+main a {
+   color: var(--primary-link);
+   text-decoration: underline;
 }
 
 footer {
@@ -101,17 +126,17 @@ footer {
    grid-area: footer;
    bottom: 0;
    width: 100%;
-   color: #55676f;
+   color: #954c1f;
    font-size: 1.5vh;
    box-sizing: border-box;
-   background-color: #1e2427 ;
-   border-top: 1px solid deepskyblue;
+   background-color: rgba(95, 34, 6, 0.1) ;
+   border-top: 1px solid var(--primary-accent);
 }
 
 .asideHead {
    width: 100%;
    box-sizing: border-box;
-   background-color: deepskyblue;
+   background-color: var(--primary-accent);
    padding: 0.5vh;
    color: white;
    text-align: center;
@@ -149,7 +174,7 @@ footer {
 }
 
 .pizza:hover {
-   background-color: #50585f ;
+   background-color: var(--primary-link);
    transform: scale(1.02);
 }
 
