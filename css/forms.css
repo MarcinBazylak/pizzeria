@@ -1,0 +1,65 @@
+::placeholder {
+   color:white;
+}
+
+a button {
+   width: 17vh;
+   background: none;
+   border: 0.2vh solid white;
+   border-radius: 0.6vh;
+   color: white;
+   padding: 1.6vh 0;
+   font-size: 1.3em;
+   font-family: Raleway;
+   margin-right: 3vh;
+   cursor: pointer;
+   box-shadow: 0.3vh 0.3vh 1vh black;
+   transition-duration: 0.2s;
+   letter-spacing: 0.7vh;
+   text-indent: 0.7vh;
+}
+
+a button:hover {
+   transform: scale(1.05);
+   box-shadow: 0.9vh 0.9vh 3vh black;
+
+}
+
+a button:focus {
+   outline: none;
+   transform: scale(1.05);
+   box-shadow: 0.9vh 0.9vh 3vh black;
+}
+
+input:focus {
+   outline: none;
+   box-shadow: 0 0 3vh white;
+}
+
+button:focus {
+   outline: none;
+   box-shadow: 0 0 3vh white;
+}
+
+input {
+   width: 35vh;
+   height: auto;
+   padding: 0.7vh 1vh;
+   font-size: 1em;
+   margin-bottom: 2vh;
+   border: 0.1vh solid white;
+   background: rgba(255,255,255,.4);
+   color: white;
+}
+
+button {
+   height: auto;
+   padding: 0.5vh 1.5vh;
+   font-size: 1em;
+   margin-bottom: 1vh;
+   border: 0.1vh solid white;
+   background: rgba(255,255,255,.9);
+   color: white;
+   cursor: pointer;
+   color: black;
+}

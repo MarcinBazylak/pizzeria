@@ -15,9 +15,10 @@ body, html {
    background: url('../img/background.jpg') center no-repeat fixed;
    background-size: cover;
    color: white;
-   font-family: Verdana, Geneva, Tahoma, sans-serif;
+   font-family: Raleway;
    font-size: 1.7vh;
    line-height: 1.8;
+   letter-spacing: 0.8vh;
 }
 
 a {
@@ -25,25 +26,8 @@ a {
    text-decoration: none;
 }
 
-a button {
-   width: 15vh;
-   background: none;
-   border: 0.3vh solid lightgreen;
-   border-radius: 0.6vh;
-   color: lightgreen;
-   padding: 1.6vh 0;
-   font-size: 2vh;
-   font-family: Verdana, Geneva, Tahoma, sans-serif;
-   margin-right: 3vh;
-   cursor: pointer;
-   box-shadow: 0.3vh 0.3vh 1vh black;
-   transition-duration: 0.2s;
-}
-
-a button:hover {
-   transform: scale(1.05);
-   box-shadow: 0.9vh 0.9vh 3vh black;
-
+a:focus {
+   outline:none;
 }
 
 .container {
@@ -51,24 +35,25 @@ a button:hover {
    display: grid;
    grid-gap: 1%;
    min-height:  88vh;
-   grid-template-columns: repeat(8, 1fr);
-   grid-template-rows: 27vh max-content;
+   grid-template-columns: repeat(1, 1fr);
+   grid-template-rows: 24vh max-content;
    grid-template-areas:
-   "header header header header header header header header"
-   "aside aside aside aside main main main main"
+   "header"
+   "main"
    ;
 }
 
 header {
    grid-area: header;
-   height: 25vh;
+   height: 22vh;
    overflow: hidden;
    position: relative;
-   background-color: rgba(0,0,0, 1);
+   background-color: #222;
+   box-shadow: 0.6vh 0.6vh 2vh black;
 }
 
 .top {
-   height: 20vh;
+   height: 17vh;
    width: 100%;
    background: url("../img/top.png") center no-repeat;
    background-size: contain; 
@@ -79,9 +64,9 @@ header {
    flex-wrap: nowrap;
    align-items: center;
    justify-content: center;
-   background-image: linear-gradient(#222, #111);
+   background-color: #222;
    position: absolute;
-   bottom: 0.1vh;
+   bottom: 0;
    height: 5vh;
    width: 100%;
 }
@@ -91,7 +76,8 @@ h1 {
    margin-right: 10%;
    line-height: 1.5;
    text-shadow: 0.4vh 0.4vh black;
-   font-size: 3.9vh;
+   font-size: 2.3em;
+   margin-block-start: 0;
 }
 
 h3 {
@@ -112,38 +98,95 @@ nav ul {
 
 nav ul li{
    display: inline-block;
+   text-align: center;
 }
 
 nav ul li a {
    display: inline-block;
-   width: 15vh;
+   width: 16vh;
    text-align: center;
    font-weight: 100;
    color: WHITE;
    text-decoration: none;
    padding: 6% 0;
+   text-indent: 0.7vh;
+   border-radius: 0.5vh;
 }
 
 nav ul li a:hover {
-   background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+   background-image: linear-gradient(rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 50%);
 }
 
-aside {
-   background-color: rgba(255, 255, 255, 0);
-   margin-left: 2vh;
-   grid-area: aside;
-   margin-top: 3vh;
-   padding-right: 3vh;
+.green {
+   max-width: fit-content;
+   min-width: 50vh;
+   margin: auto;
+   color: lightgreen;
+   border: 0.3vh solid lightgreen;
+   padding: 1vh 4vh;
+   text-align: center;
+   font-weight: 600;
+   background-color: rgba(255,255,255,0.5);
 }
 
-.front-left {
+.red {
+   max-width: fit-content;
+   min-width: 50vh;
+   margin: auto;
+   color: red;
+   border: 0.3vh solid red;
+   padding: 1vh 4vh;
+   text-align: center;
+   font-weight: 600;
+   background-color: rgba(255,255,255,0.5);
+}
+
+.home {
+   display: grid;
+   grid-gap: 3vh;
+   grid-template-columns: repeat(2, 1fr);
+   grid-template-rows: max-content;
+   grid-template-areas:
+   "homeLeft homeRight"
+   ;
+}
+
+.home-left {
    display: flex;
    justify-content: flex-end;   
    align-content: center;
+   grid-area: homeLeft;
+   padding-top: 5vh;
+   padding-right: 5vh;
 }
 
-.front-right {
+.home-right {
    margin-top: 6vh;
+   grid-area: homeRight;
+}
+
+.register {
+   display: grid;
+   grid-gap: 6vh;
+   grid-template-columns: repeat(2, 1fr);
+   grid-template-rows: max-content;
+   grid-template-areas:
+   "registerLeft registerRight"
+   ;
+}
+
+.register-left {
+   display: flex;
+   justify-content: flex-end;   
+   align-content: center;
+   grid-area: registerLeft;
+   margin-top: 7vh;
+   margin-right: 5vh;
+}
+
+.register-right {
+   margin-top: 6vh;
+   grid-area: registerRight;
 }
 
 main {
@@ -153,25 +196,7 @@ main {
    padding-left: 3vh;
 }
 
-main a {
-   color: var(--primary-link);
-   text-decoration: underline;
-}
-
-footer {
-   min-height: 8vh;
-   padding: 2vh;
-   grid-area: footer;
-   bottom: 0;
-   width: 100%;
-   color: #954c1f;
-   font-size: 1.5vh;
-   box-sizing: border-box;
-   background-color: rgba(95, 34, 6, 0.1) ;
-   border-top: 1px solid var(--primary-accent);
-}
-
-@media screen and (max-width:1235px) {
+@media screen and (max-width:1250px) {
 
    nav ul {
       display: flex;
@@ -183,23 +208,48 @@ footer {
       margin-right: 0;
    }
 
-   aside {
+   .home {
+      max-width: 95%;
+      margin: auto;
+      grid-template-areas:
+      "homeRight homeRight"
+      ;
+   }
+
+   .home-left {
       display: none;
    }
 
-   main {
+   .home-right {
       width: fit-content;
       margin: auto;
       padding: 0;
    }
 
-   .container {
-      grid-template-columns: repeat(1, 1fr);
-      grid-template-rows: 25vh max-content;
-      grid-template-areas:
-      "header"
-      "main"
-      ;
+}
+
+@media screen and (max-width:670px) {
+
+   main {
+      margin: 0 auto;
+   }
+
+   h1 {
+      margin-block-start: 0;
+      padding: 0;
+   }
+
+   h1 span {
+      font-size: 3.5em;
+   }
+
+   a button {
+      display: block;
+      width: 70%;
+      margin: auto;
+      border-color: white !important;
+      margin-bottom: 2vh;
+      text-decoration: none;
    }
 
 }

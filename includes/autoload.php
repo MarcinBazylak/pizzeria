@@ -4,9 +4,7 @@ spl_autoload_register('autoLoader');
 
 function autoLoader($className) {
 
-   $path = 'classes/';
-   $ext = '.class.php';
-   $fullPath = $path . $className . $ext;
+   $fullPath = 'controllers/' . $className . '.controller.php';
 
    include_once $fullPath;
 
