@@ -7,8 +7,8 @@ abstract class Model {
    protected abstract function checkConn();
 
    public function __construct() {
-      self::$mysqli = new mysqli('localhost', 'root', '', 'pizzeria');
-      self::$mysqli->set_charset('UTF-8');
+      global $mysqli;
+      self::$mysqli = $mysqli;
       User::checkConn();
    }   
 
@@ -52,12 +52,6 @@ abstract class Model {
       if(self::$mysqli->affected_rows > 0) {
          return true;
       }
-
-   }
-
-   public function __destruct() {
-
-      self::$mysqli->close();
 
    }
 

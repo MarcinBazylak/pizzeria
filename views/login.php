@@ -1,28 +1,24 @@
-<?php
-
-if($_GET['action'] == 'authenticate') {
-   $data = array_map('strip_tags', $_POST);
-   if($_POST['submit'] == 'submit') displayAlert($user->login($data));
-}
-
-?>
+            <?php
+            if($_GET['action'] == 'authenticate') {
+               if($_POST['submit'] == 'submit') displayAlert($user->login($_POST));
+            }
+            ?>
 
             <div class="register">
                <div class="register-left">
-<?php
-
-if(!$_SESSION['logged']) {
-   include 'views/login.form.php';
-} else {
-   echo '
+                  <?php
+                  if(!$user->authUser()) {
+                     include 'views/login.form.php';
+                  } else {
+                     echo '
                   <div>
                      Jesteś już zalogowany.<br>
                      <a href="/panel">Przejdź do panelu</a><br>
                      <a href="/home/logout">Wyloguj</a>
                   </div>';
-}
+                  }
 
-?>
+                  ?>
 
                </div>
                <div class="register-right">

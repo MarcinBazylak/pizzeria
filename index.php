@@ -4,14 +4,12 @@ error_reporting(~E_NOTICE);
 
 $page = strip_tags($_GET['page']);
 
+include 'includes/db.php';
 include 'includes/functions.php';
 require_once 'models/model.php';
 require_once 'includes/autoload.php';
 
 $user = new User;
-
-// if(isset($_GET['admin']) && !empty($_GET['admin'])) $alert = $user->giveAdminRights($_GET['id']);
-// if(isset($_GET['unadmin']) && !empty($_GET['unadmin'])) $alert = $user->revokeAdminRights($_GET['id']);
 
 if($_GET['action'] == 'logout') $alert = $user->logout();
 
@@ -69,3 +67,4 @@ if(isset($page) && !empty($page)) {
       </div>
    </body>
 </html>
+<?php $mysqli->close(); ?>
