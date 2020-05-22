@@ -2,23 +2,21 @@
 
 abstract class Model {
 
-   protected static $mysqli;
+   private $mysqli;
 
-   protected abstract function checkConn();
+   abstract public function create($data);
 
    public function __construct() {
       global $mysqli;
-      self::$mysqli = $mysqli;
-      User::checkConn();
+      $this->mysqli = $mysqli;
    }   
 
    //USERS
 
    protected function insert($table, $cols, $values) {
 
-      self::$mysqli->query("INSERT INTO " . $table . " (" . $cols . ") VALUES(" . $values . ")");
-
-      if(self::$mysqli->affected_rows > 0) {
+      $this->mysqli->query("INSERT INTO " . $table . " (" . $cols . ") VALUES(" . $values . ")");
+      if($this->mysqli->affected_rows > 0) {
          return true;
       }
 
@@ -26,8 +24,8 @@ abstract class Model {
 
    protected function select($cols, $table, $condition) {
 
-      $result = self::$mysqli->query("SELECT " . $cols . " FROM " . $table . " " . $condition);
-      if(self::$mysqli->affected_rows > 0) {
+      $result = $this->mysqli->query("SELECT " . $cols . " FROM " . $table . " " . $condition);
+      if($this->mysqli->affected_rows > 0) {
          return $result;
       } else {
          return false;
@@ -37,9 +35,8 @@ abstract class Model {
 
    protected function update($table, $colsVals, $condition) {
 
-      self::$mysqli->query("UPDATE " . $table . " SET " . $colsVals . " " . $condition);
-
-      if(self::$mysqli->affected_rows > 0) {
+      $this->mysqli->query("UPDATE " . $table . " SET " . $colsVals . " " . $condition);
+      if($this->mysqli->affected_rows > 0) {
          return true;
       }
 
@@ -47,9 +44,8 @@ abstract class Model {
 
    protected function delete($table, $condition) {
 
-      self::$mysqli->query("DELETE FROM " . $table . " WHERE " . $condition);
-
-      if(self::$mysqli->affected_rows > 0) {
+      $this->mysqli->query("DELETE FROM " . $table . " WHERE " . $condition);
+      if($this->mysqli->affected_rows > 0) {
          return true;
       }
 

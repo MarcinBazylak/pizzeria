@@ -22,12 +22,20 @@ body, html {
 }
 
 a {
-   color: inherit;
+   color: orangered;
    text-decoration: none;
+}
+
+a:hover {
+   text-decoration: underline;
 }
 
 a:focus {
    outline:none;
+}
+
+ul {
+   box-sizing: border-box;
 }
 
 .container {
@@ -46,7 +54,6 @@ a:focus {
 header {
    grid-area: header;
    height: 22vh;
-   overflow: hidden;
    position: relative;
    background-color: #222;
    box-shadow: 0.6vh 0.6vh 2vh black;
@@ -54,67 +61,22 @@ header {
 
 .top {
    height: 17vh;
-   width: 100%;
    background: url("../img/top.png") center no-repeat;
    background-size: contain; 
 }
 
-.navbar {
-   display: flex;
-   flex-wrap: nowrap;
-   align-items: center;
-   justify-content: center;
-   background-color: #222;
-   position: absolute;
-   bottom: 0;
-   height: 5vh;
-   width: 100%;
-}
-
 h1 {
    color: white;
-   margin-right: 10%;
    line-height: 1.5;
    text-shadow: 0.4vh 0.4vh black;
    font-size: 2.3em;
    margin-block-start: 0;
+   margin-block-end: 0;
 }
 
 h3 {
    color: white;
    line-height: 1.8;
-}
-
-/* nav {
-   margin-top: 2vh;
-} */
-
-nav ul {
-   display: inline-block;
-   list-style: none;
-   margin: 0 auto;
-   padding-inline-start: 0;
-}
-
-nav ul li{
-   display: inline-block;
-   text-align: center;
-}
-
-nav ul li a {
-   display: inline-block;
-   width: 16vh;
-   text-align: center;
-   font-weight: 100;
-   color: WHITE;
-   text-decoration: none;
-   padding: 6% 0;
-   text-indent: 0.7vh;
-   border-radius: 0.5vh;
-}
-
-nav ul li a:hover {
-   background-image: linear-gradient(rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 50%);
 }
 
 .green {
@@ -123,10 +85,11 @@ nav ul li a:hover {
    margin: auto;
    color: lightgreen;
    border: 0.3vh solid lightgreen;
+   border-radius: 10px;
    padding: 1vh 4vh;
    text-align: center;
    font-weight: 600;
-   background-color: rgba(255,255,255,0.5);
+   background-color: rgba(0,0,0,0.5);
 }
 
 .red {
@@ -138,7 +101,7 @@ nav ul li a:hover {
    padding: 1vh 4vh;
    text-align: center;
    font-weight: 600;
-   background-color: rgba(255,255,255,0.5);
+   background-color: rgba(0,0,0,0.5);
 }
 
 .home {
@@ -165,48 +128,22 @@ nav ul li a:hover {
    grid-area: homeRight;
 }
 
-.register {
-   display: grid;
-   grid-gap: 6vh;
-   grid-template-columns: repeat(2, 1fr);
-   grid-template-rows: max-content;
-   grid-template-areas:
-   "registerLeft registerRight"
-   ;
-}
-
-.register-left {
-   display: flex;
-   justify-content: flex-end;   
-   align-content: center;
-   grid-area: registerLeft;
-   margin-top: 7vh;
-   margin-right: 5vh;
-}
-
-.register-right {
-   margin-top: 6vh;
-   grid-area: registerRight;
+.center {
+   margin: 2vh auto;
+   background-color: rgba(0,0,0,0.5);
+   padding: 1vh;
+   width: 50vw;
+   min-height: 50vh;
 }
 
 main {
-   margin-right: 2vh;
+   margin: 0 2vh;
    grid-area: main;
-   margin-top: 3vh;
-   padding-left: 3vh;
+   max-width: 100%;
+   box-sizing: border-box;
 }
 
 @media screen and (max-width:1250px) {
-
-   nav ul {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-   }
-
-   nav ul li a {
-      margin-right: 0;
-   }
 
    .home {
       max-width: 95%;
@@ -230,26 +167,52 @@ main {
 
 @media screen and (max-width:670px) {
 
+   header {
+      height: 17vh;
+   }
+
    main {
       margin: 0 auto;
+      padding: 0;
+      width: 100%;
    }
 
    h1 {
-      margin-block-start: 0;
       padding: 0;
    }
 
    h1 span {
-      font-size: 3.5em;
+      font-size: 1.2em !important;
    }
 
    a button {
       display: block;
-      width: 70%;
-      margin: auto;
+      width: 70% !important;
+      margin: 1vh auto !important;
       border-color: white !important;
       margin-bottom: 2vh;
       text-decoration: none;
+   }
+
+   .green {
+      min-width: unset;
+      max-width: 95%;
+      box-sizing: border-box;
+   }
+
+   .red {
+      min-width: unset;
+      max-width: 95%;
+      box-sizing: border-box;
+   }
+
+   
+   .center {
+      width: 95%;
+      margin: 2vh auto;
+      background-color: rgba(0,0,0,0.5);
+      padding: 1vh;
+      box-sizing: border-box;
    }
 
 }

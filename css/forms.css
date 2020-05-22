@@ -31,18 +31,9 @@ a button:focus {
    box-shadow: 0.9vh 0.9vh 3vh black;
 }
 
-input:focus {
-   outline: none;
-   box-shadow: 0 0 3vh white;
-}
-
-button:focus {
-   outline: none;
-   box-shadow: 0 0 3vh white;
-}
-
 input {
    width: 35vh;
+   max-width: 95% !important;
    height: auto;
    padding: 0.7vh 1vh;
    font-size: 1em;
@@ -50,6 +41,42 @@ input {
    border: 0.1vh solid white;
    background: rgba(255,255,255,.4);
    color: white;
+}
+
+input:focus {
+   outline: none;
+   box-shadow: 0 0 3vh white;
+}
+
+@-webkit-keyframes autofill {
+   0%,100% {
+       color: #fff;
+       background: rgba(255,255,255,.4);
+   }
+}
+
+input:-webkit-autofill {
+   -webkit-animation-delay: 1s; /* Safari support - any positive time runs instantly */
+   -webkit-animation-name: autofill;
+   -webkit-animation-fill-mode: both;
+}
+
+textarea {
+   width: 35vh;
+   max-width: 95% !important;
+   height: auto;
+   padding: 0.7vh 1vh;
+   font-size: 1em;
+   margin-bottom: 2vh;
+   border: 0.1vh solid white;
+   background: rgba(255,255,255,.4);
+   color: white;
+   font-family: Raleway;
+}
+
+textarea:focus {
+   outline: none;
+   box-shadow: 0 0 3vh white;
 }
 
 button {
@@ -62,4 +89,32 @@ button {
    color: white;
    cursor: pointer;
    color: black;
+}
+
+
+button:focus {
+   outline: none;
+   box-shadow: 0 0 3vh white;
+}
+
+.progress {
+   margin-top: 0;
+   margin-bottom: 4vh;
+   background-color: grey;
+   position:relative;
+   width:37vh;
+   border: 0;
+   padding: 0;
+}
+
+.bar {
+   background-color: orangered;
+   width:0%;
+   height:5px;
+}
+
+.percent {
+   position: absolute;
+   text-align: center;
+   display:inline-block;
 }

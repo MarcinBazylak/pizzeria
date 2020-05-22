@@ -13,4 +13,11 @@ function displayAlert($alert) {
 
 }
 
+function displayLoginForm() {
+
+   $redirect = $_GET['page'];
+   include 'views/forms/login.form.php';
+   
+}
+
 ?>
