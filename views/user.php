@@ -1,12 +1,16 @@
 <div class="center">
 <?php
+if(User::authUser()){
 
-if(User::authAdmin()){
    echo '
-   <a href="/orders">Zobacz zamówienia</a><br>
-   <a href="/change-password">Zmień hasło</a><br>
-   <a href="/home/logout">Wyloguj</a>
+   <h1>Panel</h1>
+   <p>
+      <a href="/orders">Zamówienia</a> | 
+      <a href="/changePassword">Zmiana Hasła</a> | 
+      <a href="/home/logout">Wyloguj</a>
+   </p>
    ';
+
 } else {
    displayLoginForm();
 }

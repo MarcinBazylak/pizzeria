@@ -1,5 +1,6 @@
             <?php
             if($_GET['action'] == 'register' && $_POST['submit'] == 'submit') displayAlert($user->create($_POST));
+            $lastId = $user->lastId;
             ?>
             <div class="center">
             <?php

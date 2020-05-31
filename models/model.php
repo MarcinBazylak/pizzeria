@@ -13,41 +13,32 @@ abstract class Model {
 
    //USERS
 
-   protected function insert($table, $cols, $values) {
+   protected function insert($table, $cols, $values) : ?int {
 
       $this->mysqli->query("INSERT INTO " . $table . " (" . $cols . ") VALUES(" . $values . ")");
-      if($this->mysqli->affected_rows > 0) {
-         return true;
-      }
+      $lastId = $this->mysqli->insert_id;
+      return ($this->mysqli->affected_rows > 0) ? $lastId : null;
 
    }
 
-   protected function select($cols, $table, $condition) {
+   protected function select($cols, $table, $condition) : ?object {
 
       $result = $this->mysqli->query("SELECT " . $cols . " FROM " . $table . " " . $condition);
-      if($this->mysqli->affected_rows > 0) {
-         return $result;
-      } else {
-         return false;
-      }
+      return ($this->mysqli->affected_rows > 0) ? $result : null;
 
    }
 
-   protected function update($table, $colsVals, $condition) {
+   protected function update($table, $colsVals, $condition) : bool {
 
       $this->mysqli->query("UPDATE " . $table . " SET " . $colsVals . " " . $condition);
-      if($this->mysqli->affected_rows > 0) {
-         return true;
-      }
+      return ($this->mysqli->affected_rows > 0);
 
    }
 
-   protected function delete($table, $condition) {
+   protected function delete($table, $condition) : bool {
 
       $this->mysqli->query("DELETE FROM " . $table . " WHERE " . $condition);
-      if($this->mysqli->affected_rows > 0) {
-         return true;
-      }
+      return ($this->mysqli->affected_rows > 0);
 
    }
 

@@ -3,20 +3,22 @@
    class User extends Model {
 
       private $alert = [];
+      public $lastId;
 
-      public function create($data) { //UTWORZENIE NOWEGO UŻYTKOWNIKA
+      public function create($data) : array { //UTWORZENIE NOWEGO UŻYTKOWNIKA
          
          $data = Data::validate($data); // UŻYWA trim() I strip_tags() NA DANYCH Z FORMULARZA
          if(self::authAdmin()) { // SPRAWDZA CZY UŻYTKOWNIKA MA PRAWA ADMINA
             if($this->validateRegistrationData($data)) { // SPRAWDZA CZY WSZYSTKIE DANE ZOSTAŁY WPROWADZONE PRAWIDŁOWO
                $token = md5(time());
                $password = md5($data['pass1']);
-               if($this->insert(
+               $this->lastId = $this->insert(
                   'users',
                   'token, tel, password, name',
                   '"' . $token . '", "' . $data['tel'] . '", "' . $password . '", "' . $data['name'] . '"'
-               )) { // TWORZY POZYTYWNY ALERT JEŻELI UDAŁO SIĘ UTWORZYĆ UŻYTKOWNIKA
-                  $this->alert = [1, 'Użytkownik ' . $data['name'] . ' został zarejestrowany'];
+               );
+               if($this->lastId) { // TWORZY POZYTYWNY ALERT JEŻELI UDAŁO SIĘ UTWORZYĆ UŻYTKOWNIKA
+                  $this->alert = [1, 'Użytkownik ' . $data['name'] . ' został zarejestrowany z ID ' . $this->lastId];
                } else { // TWORZY NEGATYWNY ALERT JEŻELI NIE UDAŁO SIĘ UTWORZYĆ UŻYTKOWNIKA
                   $this->alert = [0, 'Wystąpił błąd. Sprawdź wprowadzone dane i spróbuj ponownie'];
                }
@@ -28,11 +30,11 @@
 
       }
 
-      public function giveAdminRights($userId) {
+      public function giveAdminRights($userId) : array {
 
          if(self::authAdmin()) {
             $result = $this->select('name', 'users', 'WHERE id = "' . $userId . '"');
-            $row = $result->fetch_array(MYSQLI_ASSOC);
+            $row = $result->fetch_assoc();
             if($this->update('users', 'admin = "1"', 'WHERE id = "' . $userId . '"')) {
                $this->alert = [1, 'Przyznano prawa administratora dla ' . $row['name']];
             } else {
@@ -45,11 +47,11 @@
 
       }
 
-      public function revokeAdminRights($userId) {
+      public function revokeAdminRights($userId) : array {
 
          if(self::authAdmin()) {
             $result = $this->select('name', 'users', 'WHERE id = "' . $userId . '"');
-            $row = $result->fetch_array(MYSQLI_ASSOC);
+            $row = $result->fetch_assoc();
             if($this->update('users', 'admin = "0"', 'WHERE id = "' . $userId . '"')) {
                $this->alert = [1, 'Odebrano prawa administratora dla ' . $row['name']];
             } else {
@@ -62,11 +64,11 @@
 
       }
 
-      public function remove($userId) {
+      public function remove($userId) : array {
 
          if(self::authAdmin()) {
             $result = $this->select('name', 'users', 'WHERE id = "' . $userId . '"');
-            $row = $result->fetch_array(MYSQLI_ASSOC);
+            $row = $result->fetch_assoc();
             if($this->delete('users', 'id = "' . $userId . '"')) {
                $this->alert = [1, 'Użytkownik ' . $row['name'] . ' został usunięty'];
             } else {
@@ -79,13 +81,13 @@
 
       }
 
-      public function login($data) {
+      public function login($data) : array {
          unset($_POST);
          $data = Data::validate($data);
          return ($this->validateLogin($data)) ? [1, 'Zostałeś poprawnie zalogowany'] : $this->alert;
       }
 
-      public function logout() {
+      public function logout() : array {
 
          if(self::authUser()) {
             $_SESSION = [];
@@ -97,7 +99,7 @@
 
       }
 
-      public function changePassword($data) {
+      public function changePassword($data) : array {
 
          if(self::authUser()) {
             $data = Data::validate($data);
@@ -122,50 +124,54 @@
          return $this->alert;
       }
 
-      private function validateRegistrationData($data) {         
+      private function validateRegistrationData($data) : bool {         
          return ($this->checkAllFieldsFilled($data) && $this->validateTelNo($data) && $this->checkUsernameFree($data) && $this->checkPasswords($data['pass1'], $data['pass2']));
       }
 
-      private function checkAllFieldsFilled($data) {
+      private function checkAllFieldsFilled($data) : bool {
          if(!empty($data['name']) && !empty($data['tel']) && !empty($data['pass1']) && !empty($data['pass2'])) {
             return true;
          } else {
             $this->alert = [0, 'Nie wszystkie pola zostały wypełnione'];
+            return true;
          }
       }
 
-      private function validateTelNo($data) {
+      private function validateTelNo($data) : bool {
          if(is_numeric($data['tel'])) {
             return true;
          } else {
             $this->alert = [0, 'Numer telefonu może składać się jedynie z cyfr'];
+            return true;
          }
       }
       
-      private function checkPasswords($pass1, $pass2) {
+      private function checkPasswords($pass1, $pass2) : bool {
          if($pass1 == $pass2) {
             return true;
          } else {
             $this->alert = [0, 'Hasła które wprowadziłeś nie są jednakowe'];
+            return true;
          }
       }
 
-      private function checkUsernameFree($data) {
+      private function checkUsernameFree($data) : bool {
          if(!$this->select('tel', 'users', 'WHERE tel = "' . $data['tel'] . '"')) {
             return true;
          } else {
             $this->alert = [0, 'Użytkownik o numerze ' . $data['tel'] . ' jest już zarejestrowany'];
+            return false;
          }
       }
 
-      private function validateLogin($data) {
+      private function validateLogin($data) : bool {
 
          $data = Data::validate($data);
          $tel = strip_tags($data['tel']);
          $password = md5(strip_tags($data['password']));
          $result = $this->select('*', 'users', 'WHERE tel = "' . $tel . '" && password = "' . $password . '"');
          if($result){
-            $row = $result->fetch_array(MYSQLI_ASSOC);
+            $row = $result->fetch_assoc();
             if($row['active'] == 1) {
                $date = date("Y-m-d G:i:s");
                $_SESSION['logged'] = 1;
@@ -178,18 +184,20 @@
                return true;
             } else {
                $this->alert = [0, 'Twoje konto jest nieaktywne. Skontaktuj się z administratorem'];
+               return true;
             }
          } else {
             $this->alert = [0, 'Podałeś niepoprawny numer telefonu lub hasło'];
+            return true;
          }
 
       }
 
-      public static function authUser() {
+      public static function authUser() :bool {
          return ($_SESSION['logged'] == 1);
       }
 
-      public static function authAdmin() {
+      public static function authAdmin() : bool {
          return ($_SESSION['admin'] == 1);
       }
 
