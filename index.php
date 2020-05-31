@@ -2,8 +2,6 @@
 session_start();
 error_reporting(~E_NOTICE); 
 
-$page = strip_tags($_GET['page']);
-
 include 'includes/db.php';
 include 'includes/functions.php';
 require_once 'models/model.php';
@@ -53,22 +51,16 @@ if($_GET['action'] == 'authenticate') $alert = ($user->login($_POST));
                      <li>
                         <a href="">KONTAKT</a>
                      </li>
-<?php
+                     <?php
                      if(User::authUser()) {
                         echo '
                      <li>
                         <a href="/orders"><span style="color: yellow">ZAMÓWIENIA</span></a>
-                     </li>';
-                     }
-                     if(User::authAdmin()) {
-                        echo '
+                     </li>
                      <li>
-                        <a href="/adminPanel"><span style="color: orangered">PANEL</span></a>
-                     </li>';
-                     } elseif(User::authUser()) {
-                        echo '
-                     <li>
-                        <a href="/user"><span style="color: orangered">PANEL</span></a>
+                        <a href="/';
+                        echo (User::authAdmin()) ? 'adminPanel' : 'user';                        
+                        echo'"><span style="color: orangered">PANEL</span></a>
                      </li>';
                      }
                      if(User::authUser()) {
@@ -77,14 +69,17 @@ if($_GET['action'] == 'authenticate') $alert = ($user->login($_POST));
                         <a href="/home/logout"><span style="color: yellow">WYLOGUJ</span></a>
                      </li>';
                      }
-                  ?>
+                     ?>
                   </ul> 
                </nav>            
          </header>
          <main>
 <?php
-if(isset($alert) && !empty($alert)) displayAlert($alert);
-include (isset($page) && !empty($page)) ? 'views/' . $page . '.php' : 'views/home.php';
+
+if(!empty($alert)) displayAlert($alert);
+
+include (empty($_GET['page'])) ? 'views/home.php' : 'views/' . $_GET['page'] . '.php';
+
 ?>
          </main>
       </div>

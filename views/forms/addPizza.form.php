@@ -17,7 +17,7 @@
                      <input type="text" name="name" placeholder="Nazwa pizzy" value="<?php echo ($_POST['name']) ?? '' ?>" autocomplete="off"><br>
                      <input type="text" name="toppings" placeholder="Dodatki (oddzielone przecinkami)" value="<?php echo ($_POST['toppings']) ?? '' ?>" autocomplete="off"><br>
                      <textarea name="description" placeholder="Opis" cols="30" rows="7"><?php echo ($_POST['description']) ?? '' ?></textarea><br>
-                     <input type="number" min="1" max="999" name="price" style="width: 10vh" placeholder="Cena" value="<?php echo ($_POST['price']) ?? '' ?>" autocomplete="off"><br>
+                     <input type="number" min="1" max="999" name="price" style="width: 6vh" placeholder="Cena" value="<?php echo ($_POST['price']) ?? '' ?>" autocomplete="off"> zł.<br>
                      <button type="submit" name="submit" value="submit">Zapisz</button>
                   </form>
                   
