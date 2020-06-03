@@ -1,13 +1,16 @@
 <?php 
 
-if($_GET['id'] == 'removePhoto') {
-   Photo::removePhoto($_SESSION['photo']);
+$result = $pizza->getOne($_GET['id']) ?? '';
+
+if ($result->num_rows > 0) {
+
+   $row = $result->fetch_assoc();
+   include 'views/forms/editPizza.form.php';
+
+} else {
+
+   echo 'Taka pizza nie istnieje';
+
 }
-if($_POST['submit'] == 'submit') displayAlert($pizza->edit($_POST));
 
-if(!empty($_GET['id'])) $result = $pizza->getOne($_GET['id']);
-
-$row = $result->fetch_assoc();
-
-include 'views/forms/editPizza.form.php';
 ?>
