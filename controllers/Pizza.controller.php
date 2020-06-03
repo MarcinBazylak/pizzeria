@@ -18,7 +18,7 @@ class Pizza extends Model {
             if($this->lastId) {
                unset($_SESSION['photo']);
                unset($_POST);
-               $this->alert = [1, 'Pizza ' . $data['name'] . ' została dodana z ID ' . $this->lastId];            
+               $this->alert = [1, 'Pizza ' . $data['name'] . ' została dodana'];            
             } else {
                $this->alert = [0, 'Pizza ' . $data['name'] . ' nie ostała dodana'];
             }

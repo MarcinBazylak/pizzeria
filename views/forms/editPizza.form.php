@@ -16,7 +16,8 @@
                   <script src="js/statusBar.js"></script>
                   <div id="oldImage"><img src="photos/<?php echo $row['image'] ?>.jpg?<?php echo time() ?>" style="max-width: 37vh;"></div>
                   
-                  <form action="pizzas/edit/<?php echo $row['id'] ?>" method="POST">
+                  <form action="pizzas" method="POST">
+                     <input type="hidden" name="action" value="edit">
                      <input type="hidden" name="id" value="<?php echo ($row['id']) ?? '' ?>">
                      <input type="hidden" name="photoName" value="<?php echo ($row['image']) ?? '' ?>">
                      <input type="text" name="name" placeholder="Nazwa pizzy" value="<?php echo ($row['name']) ?? '' ?>" autocomplete="off"><br>

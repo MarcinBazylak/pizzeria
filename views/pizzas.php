@@ -8,7 +8,7 @@ if(User::authAdmin()){
    echo '
    <h1>Pizze</h1>
    <p>
-      <a href="pizzas/showAll">Lista</a> | <a href="pizzas/add">Dodaj</a>
+      <a href="pizzas">Lista</a> | <a href="pizzas/add">Dodaj</a>
    </p>
    ';
    
