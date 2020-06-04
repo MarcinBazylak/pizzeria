@@ -34,6 +34,11 @@ a:focus {
    outline:none;
 }
 
+.addItemSpn {
+   color: lightgreen;
+   font-weight: 800;
+}
+
 ul {
    box-sizing: border-box;
 }
@@ -134,9 +139,11 @@ h3 {
 .center {
    margin: 2vh auto;
    background-color: rgba(0,0,0,0.5);
+   border-radius: 1em;
    padding: 1vh;
    width: 50vw;
    min-height: 50vh;
+   box-shadow: 0 0 2vh white;
 }
 
 main {

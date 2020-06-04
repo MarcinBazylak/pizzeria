@@ -26,6 +26,7 @@ if($_GET['action'] == 'authenticate') $alert = ($user->login($_POST));
       <title>Pizzeria Francesco - Najlepsza PIZZA w mieście</title>
       <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="js/addItem.js"></script>
    </head>
    <body>
       <div class="container">
@@ -43,13 +44,13 @@ if($_GET['action'] == 'authenticate') $alert = ($user->login($_POST));
                         <a href="/">HOME</a>
                      </li>
                      <li>
-                        <a href="">MENU</a>
+                        <a href="menu">MENU</a>
                      </li>
                      <li>
-                        <a href="">ZAMÓW</a>
+                        <a href="order">ZAMÓW</a>
                      </li>
                      <li>
-                        <a href="">KONTAKT</a>
+                        <a href="contact">KONTAKT</a>
                      </li>
                      <?php
                      if(User::authUser()) {

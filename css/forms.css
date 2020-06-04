@@ -2,7 +2,27 @@
    color:rgba(255,255,255,.4);
 }
 
-a button {
+button.y {
+   background: lightgreen;
+   border: 0;
+   border-radius: 1em;
+   margin-top: 0.5vh;
+   padding: 0.5em 1em;
+   color: black;
+   font-weight: 800;
+}
+
+button.n {
+   background: red;
+   border: 0;
+   border-radius: 1em;
+   margin-top: 0.5vh;
+   padding: 0.5em 1em;
+   color: black;
+   font-weight: 800;
+}
+
+a button.home-btn {
    width: 17vh;
    background: none;
    border: 0.2vh solid white;
@@ -19,13 +39,13 @@ a button {
    text-indent: 0.7vh;
 }
 
-a button:hover {
+a button.home-btn:hover {
    transform: scale(1.05);
    box-shadow: 0.9vh 0.9vh 3vh black;
 
 }
 
-a button:focus {
+a button.home-btn:focus {
    outline: none;
    transform: scale(1.05);
    box-shadow: 0.9vh 0.9vh 3vh black;
@@ -117,4 +137,12 @@ button:focus {
    position: absolute;
    text-align: center;
    display:inline-block;
+}
+
+.menuItem {
+   width: 3em;
+}
+
+.menuItemBtn:disabled {
+   color: gray;
 }
