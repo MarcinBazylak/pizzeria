@@ -11,7 +11,7 @@ if(User::authAdmin()){
       Czy na pewno chcesz usunąć pizzę ' . $row['name'] . ' ?
       <form id="delForm" method="POST" action="pizzas/remove/' . $_GET['id'] . '">
       </form>    
-      <button type="submit" name="y" form="delForm">TAK</button> <button type="submit" form="delForm" formaction="pizzas" formmethod="GET"s>NIE</button>    
+      <button type="submit" name="y" form="delForm" class="y">TAK</button> <button type="submit" form="delForm" formaction="pizzas" formmethod="GET" class="n">NIE</button>    
       ';
       displayAlert([1, $alert]);
    }

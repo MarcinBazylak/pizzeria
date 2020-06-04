@@ -9,8 +9,8 @@
                      Prawdziwa PIZZA przygotowywana w tradycyjny<br>sposób przez WŁOSKIEGO kucharza
                   </h2>
                   <br>
-                  <a href=""><button type="button" style="border-color:green">MENU</button></a>
-                  <a href=""><button type="button" style="border-color:white">ZAMÓW</button></a>
-                  <a href=""><button type="button" style="border-color:red">KONTAKT</button></a>
+                  <a href="menu"><button type="button" class="home-btn" style="border-color:green">MENU</button></a>
+                  <a href="order"><button type="button" class="home-btn" style="border-color:white">ZAMÓW</button></a>
+                  <a href="contact"><button type="button" class="home-btn" style="border-color:red">KONTAKT</button></a>
                </div>
             </div>
