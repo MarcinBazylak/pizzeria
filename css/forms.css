@@ -146,3 +146,19 @@ button:focus {
 .menuItemBtn:disabled {
    color: gray;
 }
+
+select {
+   width: 37.1vh;
+   max-width: 95% !important;
+   height: auto;
+   padding: 0.7vh 1vh;
+   font-size: 1em;
+   margin-bottom: 2vh;
+   border: 0.1vh solid white;
+   background: rgba(255,255,255,.4);
+   color: white;
+}
+
+select option {
+   color: black;
+}
