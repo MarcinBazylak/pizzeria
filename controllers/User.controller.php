@@ -90,7 +90,12 @@
       public function logout() : array {
 
          if(self::authUser()) {
-            $_SESSION = [];
+            unset($_SESSION['logged']);
+            unset($_SESSION['admin']);
+            unset($_SESSION['user_id']);
+            unset($_SESSION['user_name']);
+            unset($_SESSION['user_tel']);
+            unset($_SESSION['password']);
             $this->alert = [1, 'poprawnie wylogowano'];
          } else {
             $this->alert = [0, 'Nie można wylogować niezalogowanego użytkownika'];

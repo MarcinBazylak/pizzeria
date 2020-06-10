@@ -1,8 +1,6 @@
 <div class="center">
-<h1>Nasze menu</h1>
-<p>
-   Tutaj możesz zapoznać sie z naszą ofertą
-</p>
+<h1 style="margin-bottom: 1em">Nasze menu</h1>
+
 <?php
 $pizza = new Pizza();
 $result = $pizza->getAll() ?? '';
