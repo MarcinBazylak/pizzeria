@@ -5,58 +5,68 @@
 
 $order = new Order;
 
-if($_GET['action'] == 'clear') {
+if($_GET['action'] === 'clear') {
+
    unset($_SESSION['basket']);
+   unset($_SESSION['orderSaved']);
+   unset($_SESSION['orderId']);
    displayAlert([1, 'Zamówienie zostało usunięte']);
+
 }
 
-if($_GET['action'] == 'create') {
+if($_GET['action'] === 'checkstatus') {
 
-   displayAlert($order->create($_POST));
+   displayAlert($order->checkStatusByUser($_POST['orderId']));
+
+}
+
+if($_GET['action'] === 'confirm') {
+
+   displayAlert($order->confirm($_GET['id']));
+
+}
+
+if($_SESSION['basket']) {
+
+   if($_GET['action'] === 'create') {
+
+      displayAlert($order->create($_POST));
+
+   }
+
+   if($_SESSION['orderSaved']) {
+
+      include 'views/orders/orderDetails.php';   
+      echo '
+      <p>Numer Twojego zamówienia to <span style="font-size: 2em;">' . $_SESSION['orderId'] . '</span>. Zanotuj go aby móc na bierząco sprawdzać jego status.</p>
+      <p>Klikając w poniższy przycisk, przekażesz zamówienie do realizacji. Zapłacisz za nie przy odbiorze.</p>
+      <a href="order/confirm/' . $_SESSION['orderId'] . '"><button type="button">Zrealizuj zamówienie</button></a>';
    
-   echo '
-   <p>Numer Twojego zamówienia to <span style="font-size: 2em;">' . $order->orderId . '</span>. Zanotuj go aby móc na bierząco sprawdzać jego status.</p>
-   <p>Klikając w poniższy przycisk, przekażesz zamówienie do realizacji. Zapłacisz za nie przy odbiorze.</p>
-   <a href="order/pay/' . $order->orderId . '"><button type="button">Zrealizuj zamówienie</button></a>';
-
-} elseif($_GET['action'] == 'pay') {
-
-   displayAlert($order->pay($_GET['id']));
+   } else {
+   
+      include 'views/orders/orderDetails.php';   
+      include 'views/forms/order.form.php';
+   
+   }
 
 } else {
 
-   if($_SESSION['basket']) {
-      echo '
-      <p>
-      Poniżej znajdują się szczegóły Twojego zamówienia
-      </p>
-      ';
-      $total = 0;
-      foreach($_SESSION['basket'] as $item) {
-         $subtotal = $item['prodPrice'] * $item['prodQuantity'];
-         echo '
-         <div class="orderRow">
-            <div class="orderRowLeft">' . $item['prodQuantity'] . ' x <b>' . $item['prodName'] . '</b> (' . $item['prodPrice'] . ' zł.)</div>
-            <div class="orderRowRight">' . $subtotal . ' zł <a href="order/removeItem/' . $item['prodId'] . '"><b>usuń</b></a></div>
-         </div>
-         ';
-         $total += $subtotal;
-      }
-      echo '
-      <div class="orderRow">
-      <div class="orderRowLeft"></div>
-      <div class="orderRowRight"><b>Razem do zapłaty ' . $total . ' zł.</b></div>
-      </div>';
-
-      include 'views/forms/order.form.php';
-
-   } else {
-      echo '
+   echo '
+   <div style="text-align: center;">
       <p>
          Twoje zamówienie jest puste. Przejdź do <a href="menu">menu</a> aby coś zamówić.
       </p>
-      ';
-   }
+      <p>
+         lub
+      </p>
+      <p>
+         Sprawdź status zamówienia
+      </p>
+      <form action="order/checkstatus" method="POST">
+         <input type="number" placeholder="Wprowadź numer zamówienia" name="orderId" min="1" max="9999" required>
+         <button type="submit">Sprawdź status</button>
+      </form>
+   </div>';
 
 }
 
