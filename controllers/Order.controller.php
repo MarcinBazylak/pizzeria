@@ -117,6 +117,12 @@ class Order extends Model{
 
    }
 
+   public function removeItem($id) {
+
+      unset($_SESSION['basket'][$id]);
+
+   }
+
    private function checkStatus($orderId) {
 
       $result = $this->select('status', 'orders', 'WHERE id = "' . $orderId . '"');

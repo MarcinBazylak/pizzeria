@@ -1,4 +1,4 @@
-<form action="contact/send" method="post" id="contactForm"">
+<form action="/contact/send" method="post" id="contactForm"">
       <div class=" kontakt">
          <p>
          Jeżeli chciałbyś skontaktować się z nami w sprawie swojego zamówienia, lub w jakiejkolwiek innej sprawie, to jesteśmy do Twojej dyspozycji codziennie

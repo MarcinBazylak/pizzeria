@@ -12,13 +12,13 @@ if ($result->num_rows > 0) {
       <div class="pizza-list-row">
          <div class="pizza-list-row-line">
             <div class="pizza-list-img">
-               <img class="pizza-list" src="photos/' . $row['image'] . '.jpg?' . time() . '">
+               <img class="pizza-list" src="/photos/' . $row['image'] . '.jpg?' . time() . '">
             </div>
             <div class="pizza-list-txt">
                <h3>' . $row['name'] . '</h3>' . $row['toppings'] . '</br>' . $row['description'] . '<br>Cena: ' . $row['price'] . ' zł.
             </div>
          </div>
-         <form id="add-item' . $row['id'] . '" action="addItem.php" method="POST">
+         <form id="add-item' . $row['id'] . '" action="/addItem.php" method="POST">
             <input type="hidden" id="id' . $row['id'] . '" name="id" value="' . $row['id'] . '">
             <input type="number" id="number' . $row['id'] . '" min="1" max="10" name="number' . $row['id'] . '" class="menuItem" maxlength="2" value="1" required> <button id="submit' . $row['id'] . '" type="submit" class="menuItemBtn">Dodaj do zamówienia</button>
             <span id="addItemSpn' . $row['id'] . '" class="addItemSpn"></span>

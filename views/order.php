@@ -20,6 +20,12 @@ if($_GET['action'] === 'checkstatus') {
 
 }
 
+if($_GET['action'] === 'removeItem') {
+
+   $order->removeItem($_GET['id']);
+
+}
+
 if($_GET['action'] === 'confirm') {
 
    displayAlert($order->confirm($_GET['id']));
@@ -40,7 +46,7 @@ if($_SESSION['basket']) {
       echo '
       <p>Numer Twojego zamówienia to <span style="font-size: 2em;">' . $_SESSION['orderId'] . '</span>. Zanotuj go aby móc na bierząco sprawdzać jego status.</p>
       <p>Klikając w poniższy przycisk, przekażesz zamówienie do realizacji. Zapłacisz za nie przy odbiorze.</p>
-      <a href="order/confirm/' . $_SESSION['orderId'] . '"><button type="button">Zrealizuj zamówienie</button></a>';
+      <a href="/order/confirm/' . $_SESSION['orderId'] . '"><button type="button">Zrealizuj zamówienie</button></a>';
    
    } else {
    
@@ -54,7 +60,7 @@ if($_SESSION['basket']) {
    echo '
    <div style="text-align: center;">
       <p>
-         Twoje zamówienie jest puste. Przejdź do <a href="menu">menu</a> aby coś zamówić.
+         Twoje zamówienie jest puste. Przejdź do <a href="/menu">menu</a> aby coś zamówić.
       </p>
       <p>
          lub
@@ -62,7 +68,7 @@ if($_SESSION['basket']) {
       <p>
          Sprawdź status zamówienia
       </p>
-      <form action="order/checkstatus" method="POST">
+      <form action="/order/checkstatus" method="POST">
          <input type="number" placeholder="Wprowadź numer zamówienia" name="orderId" min="1" max="9999" required>
          <button type="submit">Sprawdź status</button>
       </form>

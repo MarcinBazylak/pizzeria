@@ -1,6 +1,6 @@
                   <h2>Edytuj pizzę</h2>
                   <p>Wypełnij formularz aby zmienić nazwę, dodatki, opis lub cenę pizzy</p>
-                  <form id="form" enctype="multipart/form-data" action="newPhoto.php" method="POST">
+                  <form id="form" enctype="multipart/form-data" action="/newPhoto.php" method="POST">
                      <input type="hidden" name="pizzaId" value="<?php echo ($row['id']) ?? '' ?>">
                      <input type="hidden" name="photoName" value="<?php echo ($row['image']) ?? '' ?>">                     
                      <br><label>Wybierz nowe zdjęcie</label><br>
@@ -12,11 +12,11 @@
                   </div>
                   <div id="status"></div>
                   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
-                  <script src="js/upload.js"></script>
-                  <script src="js/statusBar.js"></script>
-                  <div id="oldImage"><img src="photos/<?php echo $row['image'] ?>.jpg?<?php echo time() ?>" style="max-width: 37vh;"></div>
+                  <script src="/js/upload.js"></script>
+                  <script src="/js/statusBar.js"></script>
+                  <div id="oldImage"><img src="/photos/<?php echo $row['image'] ?>.jpg?<?php echo time() ?>" style="max-width: 37vh;"></div>
                   
-                  <form action="pizzas" method="POST">
+                  <form action="/pizzas" method="POST">
                      <input type="hidden" name="action" value="edit">
                      <input type="hidden" name="id" value="<?php echo ($row['id']) ?? '' ?>">
                      <input type="hidden" name="photoName" value="<?php echo ($row['image']) ?? '' ?>">

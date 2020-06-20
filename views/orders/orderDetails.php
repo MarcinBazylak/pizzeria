@@ -9,7 +9,7 @@ foreach($_SESSION['basket'] as $item) {
    echo '
    <div class="orderRow">
       <div class="orderRowLeft">' . $item['prodQuantity'] . ' x <b>' . $item['prodName'] . '</b> (' . $item['prodPrice'] . ' zł)</div>
-      <div class="orderRowRight">' . $subtotal . ' zł <a href="order/removeItem/' . $item['prodId'] . '"><b>usuń</b></a></div>
+      <div class="orderRowRight">' . $subtotal . ' zł <a href="/order/removeItem/' . $item['prodId'] . '"><b>usuń</b></a></div>
    </div>
    ';
    $total += $subtotal;

@@ -1,5 +1,5 @@
 <p>Wypełnij poniższy formularz aby dokończyć zamówienie</p>
-<form id="orderForm" action="order/create" method="POST">
+<form id="orderForm" action="/order/create" method="POST">
    <input type="text" name="name" placeholder="Imię i Nazwisko" value="<?php echo ($_POST['name']) ?? '' ?>" autocomplete="off"><br>
    <input type="text" name="tel" placeholder="Numer telefonu" value="<?php echo ($_POST['tel']) ?? '' ?>" autocomplete="off"><br>
    <input type="text" name="address1" placeholder="Ulica" value="<?php echo ($_POST['address1']) ?? '' ?>" autocomplete="off"><br>

@@ -15,18 +15,17 @@ if($_GET['action'] == 'authenticate') $alert = ($user->login($_POST));
 <!DOCTYPE html>
 <html lang="pl">
    <head>
-      <base href="/">
       <meta charset="UTF-8">
-      <link rel="shortcut icon" href="img/icon.png">
-      <link rel="stylesheet" href="css/style.css?<?php echo time() ?>">
-      <link rel="stylesheet" href="css/menu.css?<?php echo time() ?>">
-      <link rel="stylesheet" href="css/forms.css?<?php echo time() ?>">
+      <link rel="shortcut icon" href="/img/icon.png">
+      <link rel="stylesheet" href="/css/style.css?<?php echo time() ?>">
+      <link rel="stylesheet" href="/css/menu.css?<?php echo time() ?>">
+      <link rel="stylesheet" href="/css/forms.css?<?php echo time() ?>">
       <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Pizzeria Francesco - Najlepsza PIZZA w mieście</title>
       <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-      <script src="js/addItem.js"></script>
+      <script src="/js/addItem.js"></script>
    </head>
    <body>
       <div class="container">
@@ -44,13 +43,13 @@ if($_GET['action'] == 'authenticate') $alert = ($user->login($_POST));
                         <a href="/">HOME</a>
                      </li>
                      <li>
-                        <a href="menu">MENU</a>
+                        <a href="/menu">MENU</a>
                      </li>
                      <li>
-                        <a href="order">ZAMÓW</a>
+                        <a href="/order">ZAMÓW</a>
                      </li>
                      <li>
-                        <a href="contact">KONTAKT</a>
+                        <a href="/contact">KONTAKT</a>
                      </li>
                      <?php
                      if(User::authUser()) {
@@ -84,7 +83,7 @@ include (empty($_GET['page'])) ? 'views/home.php' : 'views/' . $_GET['page'] . '
 ?>
          </main>
       </div>
-      <script src="js/submitForm.js"></script>
+      <script src="/js/submitForm.js"></script>
    </body>
 </html>
 <?php $mysqli->close(); ?>
