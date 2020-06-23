@@ -42,7 +42,7 @@ if($_SESSION['basket']) {
 
    if($_SESSION['orderSaved']) {
 
-      include 'views/orders/orderDetails.php';   
+      include 'views/orders/orderConfirmedDetails.php';   
       echo '
       <p>Numer Twojego zamówienia to <span style="font-size: 2em;">' . $_SESSION['orderId'] . '</span>. Zanotuj go aby móc na bierząco sprawdzać jego status.</p>
       <p>Klikając w poniższy przycisk, przekażesz zamówienie do realizacji. Zapłacisz za nie przy odbiorze.</p>

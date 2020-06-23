@@ -62,8 +62,6 @@ if ($result->num_rows > 0) {
    }
 
 } else {
-   //document.getElementById("submit'.$row['id'].'").disabled = true;
-   //document.getElementById("number'.$row['id'].'").disabled = true;
    echo 'Brak wyników do wyświetlenia';
 }
 ?>
